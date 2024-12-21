@@ -11,7 +11,11 @@ export const eventType = defineType({
         }),
         defineField({
             name: 'slug',
-            type: 'slug'
+            type: 'slug',
+            //generate the slug field value
+            options: {source: 'name'},
+            //validation - required
+            validation: (rule) => rule.required().error("This field is required.")
         }),
         defineField({
             name: 'eventType',
@@ -23,7 +27,11 @@ export const eventType = defineType({
         }),
         defineField({
             name: 'doorsOpen',
-            type: 'number'
+            //description about the field
+            description: 'Number of minutes before the start time for admission',
+            type: 'number',
+            //set an initial value
+            initialValue: 60,
         }),
         defineField({
             name: 'venue',
@@ -31,7 +39,7 @@ export const eventType = defineType({
             to: [{type: 'venue'}]
         }),
         defineField({
-            name: 'headline',
+            name: 'artist',
             type: 'reference',
             to: [{type: 'artist'}]
         }),
@@ -49,4 +57,12 @@ export const eventType = defineType({
             type: 'url'
         })
     ],
+    //content list preview
+    preview:{
+        select: {
+            title: 'name',
+            subtitle: 'artist.name',
+            media: 'image'
+        }
+    }
 })

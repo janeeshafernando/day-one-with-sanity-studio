@@ -5,6 +5,10 @@ export const artistType = defineType({
     name: 'artist',
     title: 'Artist',
     type: 'document',
+    groups:[
+        {name: 'details', title: 'Details'},
+        {name: 'editorial', title: 'Editorial'}
+    ],
     fields:[
         defineField({
             name: 'image',
@@ -12,11 +16,13 @@ export const artistType = defineType({
         }),
         defineField({
             name: 'name',
-            type: 'string'
+            type: 'string',
+            group: ['details', 'editorial']
         }),
         defineField({
             name: 'slug',
-            type: 'slug'
+            type: 'slug',
+            group: 'details'
         }),
         defineField({
             name: 'category',
@@ -25,7 +31,9 @@ export const artistType = defineType({
                 list: [
                     {title: 'Solo Singer', value: 'solo-singer'},
                     {title: 'Band', value: 'band'}
-                ]
+                ],
+                //https://www.sanity.io/docs/previews-list-views#dbe115bb1388
+                layout: 'dropdown'
             }
         }),
         defineField({
@@ -37,7 +45,8 @@ export const artistType = defineType({
                     {title: 'Indie Pop', value: 'indie-pop'},
                     {title: 'Reggae Fusion', value: 'reggae-fusion'},
                     {title: 'Electronic', value: 'electronic'}
-                ]
+                ],
+                layout: 'dropdown'
             }
         }),
         defineField({

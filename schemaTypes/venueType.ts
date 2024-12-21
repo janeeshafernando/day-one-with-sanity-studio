@@ -15,6 +15,13 @@ export const venueType = defineType({
             type: 'string'
         }),
         defineField({
+            name: 'slug',
+            type: 'slug',
+            options: {source: 'name'},
+            //hide the field until certain condition is true
+            hidden: ({document}) => !document?.name,
+        }),
+        defineField({
             name: 'venueType',
             type: 'string',
             options:{
@@ -23,7 +30,8 @@ export const venueType = defineType({
                     {title: 'Amphitheater', value:'amphitheater'},
                     {title: 'Club', value:'Club'},
                     {title: 'Outdoor', value: 'outdoor'}
-                ]
+                ],
+                layout: 'dropdown'
             }
         }),
         defineField({

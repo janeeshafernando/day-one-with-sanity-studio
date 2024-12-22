@@ -1,6 +1,5 @@
 import { defineField, defineType } from "sanity";
 
-
 export const artistType = defineType({
     name: 'artist',
     title: 'Artist',
@@ -22,7 +21,10 @@ export const artistType = defineType({
         defineField({
             name: 'slug',
             type: 'slug',
-            group: 'details'
+            //generate the slug field value
+            options: {source: 'name'},
+            //validation - required
+            validation: (rule) => rule.required().error("This field is required.")
         }),
         defineField({
             name: 'category',

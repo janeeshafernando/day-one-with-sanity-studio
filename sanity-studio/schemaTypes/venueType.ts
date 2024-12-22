@@ -18,6 +18,8 @@ export const venueType = defineType({
             name: 'slug',
             type: 'slug',
             options: {source: 'name'},
+            //validation - required
+            validation: (rule) => rule.required().error("This field is required."),
             //hide the field until certain condition is true
             hidden: ({document}) => !document?.name,
         }),
